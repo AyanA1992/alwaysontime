@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Always on Time</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+
+<body>
+  <header class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper green darken-1">
+        <ul>
+          <li>
+            <a href="/" class="left brand-logo"> Always on Time</a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="/about">About</a></li>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'prayers_index' %}"> View Prayers </a> </li>
+       {% else %}
+       <li><a href="{%url 'login' %}">Login</a></li>
+       {% endif %}
+        
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container">{% block content %} {% endblock %}</main>
+  <footer class="page-footer green darken-1">
+    <div class="right">
+      All Rights Reserved, © 2023 Always On Time
+    </div>
+  </footer>
+</body>
+
+</html>
