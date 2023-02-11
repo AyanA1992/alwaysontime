@@ -17,7 +17,8 @@ def about(request):
 
 
 @login_required
-def salats_index(request):
+
+def salat_index(request):
  
 
     url = "https://aladhan.p.rapidapi.com/timingsByCity"
@@ -33,13 +34,21 @@ def salats_index(request):
 
     print(response.text)
 
-    salats = Salat.objects.select_related().filter(user=request.user)
+    salats = Salat.objects.filter(user=request.user)
     return render(request, 'salat/index.html', {'salats': salats})
 
-# @login_required
-# def assoc_prayers(request, prayer_id):
-#   Beyonce.objects.get(id=beyonce_id).tours.add(tour_id)
-#   return redirect('detail', beyonce_id=beyonce_id)
+@login_required
+def salat_detail(request, salat_id):
+  salat = Salat.objects.get(id=salat_id)
+  
+  search_form = SearchForm() 
+  
+
+  return render(request, 'salat/detail.html', {
+    'salat': salat,
+    'search_form': search_form,
+   
+  })
 
  
 def signup(request):
@@ -82,7 +91,7 @@ class SalatUpdate(LoginRequiredMixin, UpdateView):
 
 class SalatDelete(LoginRequiredMixin, DeleteView):
   model = Salat
-  success_url = '/salats/'
+  success_url = '/salat/'
 
 class SalatDetail(LoginRequiredMixin, DeleteView):
   model = Salat
@@ -115,3 +124,64 @@ def prayers_search(request):
 def assoc_prayers(request, salat_id):
   Salat.objects.get(id=salat_id).prayers.add(prayers_id)
   return redirect('detail', salat_id=salat_id)
+
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    # handle the creation of the new user
+    # capture form inputs from the submission
+    form = UserCreationForm(request.POST)
+    # validate form inputs
+    if form.is_valid():
+      # save the new user
+      user = form.save()
+      # login the new user
+      login(request, user)
+      # redirect to the cats index
+      return redirect('index')
+    # if the user inputs are invalid
+    else:
+      # generate error message to present to the screen
+      error_message = 'invalid credentials'
+  # send a new form to the template
+  form = UserCreationForm()
+  return render(request, 'registration/signup.html', {
+    'form': form,
+    'error': error_message
+  })
+
+
+class SalatCreate(LoginRequiredMixin, CreateView):
+  model = Salat  
+  fields = ('name', 'time', 'rakah', 'giblat')
+  success_url = '/salat/'
+
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
+class SalatUpdate(LoginRequiredMixin, UpdateView):
+  model = Salat
+  fields = ('name', 'time', 'rakah')
+
+class SalatDelete(LoginRequiredMixin, DeleteView):
+  model = Salat
+  success_url = '/salat/'
+
+class PrayerIndex(LoginRequiredMixin, ListView):
+  model = Prayers
+
+class PrayerDetail(LoginRequiredMixin, DetailView):
+  model = Prayers
+
+class PrayerCreate(LoginRequiredMixin, CreateView):
+  model = Prayers
+  fields = '__all__'
+
+class PrayerUpdate(LoginRequiredMixin, UpdateView):
+  model = Prayers
+  fields = '__all__'
+
+class PrayersDelete(LoginRequiredMixin, DeleteView):
+  model = Prayers
+  success_url = '/prayers/'

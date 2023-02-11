@@ -28,6 +28,7 @@
           <li><a href="{% url 'prayers_index' %}"> View Prayers </a> </li>
        {% else %}
        <li><a href="{%url 'login' %}">Login</a></li>
+       <li><a href="{% url 'signup' %}">Signup</a></li>
        {% endif %}
         
         </ul>
@@ -37,7 +38,7 @@
   <main class="container">{% block content %} {% endblock %}</main>
   <footer class="page-footer green darken-1">
     <div class="right">
-      All Rights Reserved, © 2023 Always On Time
+        2023 Always On Time
     </div>
   </footer>
 </body>
