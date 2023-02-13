@@ -1,0 +1,19 @@
+
+   {% extends 'base.html' %} {% block content %}
+
+<h1>Prayer Details</h1>
+
+<div class="card">
+    <a href="{% url 'prayers_detail' prayers.id %}">
+        <div class="card-content">
+            <span class="card-title"></span>
+                {{ prayers.name }}</span>
+        </div>
+    </a>
+    <div class="card-action">
+        <a href="{% url 'prayers_update' prayers.id %}">Edit</a>
+        <a href="{% url 'prayers_delete' prayers.id %}">Delete</a>
+    </div>
+</div>
+
+{% endblock %}

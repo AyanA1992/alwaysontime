@@ -1,0 +1,19 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Daily Salat List</h1>
+
+{% for prayer in prayers %}
+<div class="card">
+  <a href="{% url 'prayers_detail' prayer.id %}" >
+  <div class="card-content>
+    <span class="card-title">{{ prayer.name }}</span>
+    <p>City: {{ prayer.city }} </p>
+    <p>Country: {{ prayer.country }}</p>
+    <p>Time: {{ prayer.time }}</p>
+   
+
+    
+  </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}

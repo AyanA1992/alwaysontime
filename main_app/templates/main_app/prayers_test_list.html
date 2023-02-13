@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Prayer Table</h1>
+<div class="card">
+  <div class="card-content">
+    <span class='card-title Light
+
+    #bef67a'> Daily Prayer List</span>
+   <p>Fajr {{salats.data.timings.Fajr}}</p>
+   <p> Sunrise{{salats.data.timings.Sunrise}}</p>
+   <p> Dhuhr{{salats.data.timings.Dhuhr}}</p>
+   <p> Asr{{salats.data.timings.Asr}}</p>
+   <p> Sunset{{salats.data.timings.Sunset}}</p>
+   <p> Maghrib{{salats.data.timings.Maghrib}}</p>
+   <p> Isha{{salats.data.timings.Isha}}</p>
+   <p> Imsak{{salats.data.timings.Imsak}}</p>
+   <p> Midnight{{salats.data.timings.Midnight}}</p>
+   <p> First third{{salats.data.timings.Firstthird}}</p>
+   <p> Last third{{salats.data.timings.Lastthird}}</p>
+  </div>
+  </a>
+</div>
+ {% endblock %}

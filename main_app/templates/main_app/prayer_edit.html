@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Edit Prayer</h1>
+
+<h4>
+  Are you sure you want to edit <span class="card-title">
+
+<form action="" method="POST">
+  {% csrf_token %}
+  {{form}}
+  <input type="submit" value="Yes - Edit!" class="btn" />
+  
+</form>
+{% endblock %}

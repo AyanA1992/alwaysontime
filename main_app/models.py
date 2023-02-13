@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 
 #first model-set name,time,rak'ah, gilat direction
 class Prayers(models.Model):
-    name: models.CharField(max_length=50)
-    time: models.CharField(max_length=5)
-    rakah: models.CharField(max_length=20)
+    name= models.CharField(max_length=50)
+    time= models.CharField(max_length=5)
+    rakah= models.CharField(max_length=20)
     giblat_direction:models.CharField(max_length=10)
 
     def __str__(self):
@@ -17,14 +17,14 @@ class Prayers(models.Model):
     
 
 class Salat(models.Model):
-    name: models.CharField(max_length=20)
-    time:models.CharField(max_length=20)
-    rakah:models.CharField(max_length=50)
-    giblat:models.CharField(max_length=10)
+    name= models.CharField(max_length=20)
+    time=models.CharField(max_length=20)
+    rakah=models.CharField(max_length=50)
+    giblat=models.CharField(max_length=10)
 
 
     def __str__(self):
-        return f'{self.name.time.rakak.giblat}, {self.time.rakah}'
+        return f'{self.name}, {self.time}'
     
     def get_absolute_url(self):
         return reverse("detail", kwargs={'salat_id': self.id})

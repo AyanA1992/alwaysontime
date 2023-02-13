@@ -1,0 +1,18 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>Salat List</h1>
+
+{% for prayers in prayers %}
+<div class="card">
+  <a href="{% url 'detail' prayers.id %}" >
+  <div class="card-content>
+    <span class="card-title">{{ prayers.name }}</span>
+    <p>City: {{ prayers.city }} </p>
+    <p>Country: {{ prayers.country }}</p>
+    <p>Time: {{ prayers.time }}</p>
+   
+    
+  </div>
+  </a>
+</div>
+{% endfor %} {% endblock %}
