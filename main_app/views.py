@@ -4,9 +4,10 @@ from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import ListView, DetailView, TemplateView
 from .models import Prayers, Salat
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse
 import requests
 
 headers = {
@@ -49,6 +50,13 @@ def salat_detail(request, salat_id):
 
     })
 
+def logout_view(request):
+    logout(request)
+    return redirect('/salats/')
+
+
+
+
 
 def signup(request):
     error_message = ''
@@ -88,6 +96,7 @@ class SalatCreate(LoginRequiredMixin, CreateView):
 class SalatUpdate(LoginRequiredMixin, UpdateView):
      model = Salat
      fields = ('name', 'time', 'rakat')
+   
 
 
 class SalatDelete(LoginRequiredMixin, DeleteView):
@@ -95,10 +104,9 @@ class SalatDelete(LoginRequiredMixin, DeleteView):
     success_url = '/salat/'
 
 
-class SalatDetail(LoginRequiredMixin, DeleteView):
+class SalatDetail(LoginRequiredMixin, DetailView):
     model = Salat
-    def post(self,request,salat_id):
-        pass
+    
 
 class PrayerIndex(LoginRequiredMixin, ListView):
     model = Prayers
@@ -123,7 +131,9 @@ class PrayerUpdate( UpdateView):
         form = Salat.objects.filter(pk=pk).first()
         context = {'form': form}
         return render(request, 'main_app/prayer_edit.html', context)
-   
+    def  get_success_url(self) -> str:
+         return reverse('prayers_detail', kwargs={'pk':self.object.id})
+     
 
 class PrayerDelete(LoginRequiredMixin, DeleteView):
     model = Prayers

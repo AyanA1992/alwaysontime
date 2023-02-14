@@ -28,9 +28,11 @@
           <li><a href="{%url 'index'%}"> View Prayers </a> </li>
           <li><a href="{%url 'salats_create'%}"> Add Salat</a> </li>
           <li><a href="{%url 'prayers_test_list' %}"> Prayer Timetable </a> </li>
+          <li><a href="{% url 'logout' %}?next=/">Logout</a></li>
        {% else %}
        <li><a href="{%url 'login' %}">Login</a></li>
        <li><a href="{% url 'signup' %}">Signup</a></li>
+      
        {% endif %}
         
         </ul>
