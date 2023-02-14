@@ -1,19 +1,19 @@
-# alwaysontime
+# Always On Time
 Always On Time is a prayer tracking app for Muslims. It helps to track daily salat and keep track of prayer times globally.
 
 
-#Function
+## Function
 Click on the 'Add Salat' to add and track your daily prayers. Click the 'edit' button to edit a salat or the 'delete' to remove a salat. Click 'Prayers' to see the daily prayer timetable.
 
-##Technologies Used
-*HTML
-*CSS
-*DJANGO
-*Python
+## Technologies Used
+* HTML
+* CSS
+* DJANGO
+* Python
 
-##Getting Started
+## Getting Started
 
-##Screenshots
+## Screenshots
 
 
 
@@ -23,6 +23,6 @@ Click on the 'Add Salat' to add and track your daily prayers. Click the 'edit' b
 
 <a href="https://ibb.co/VQdQcKj"><img src="https://i.ibb.co/MGbGxX2/Screen-Shot-2023-02-12-at-11-53-11-PM.png" alt="Screen-Shot-2023-02-12-at-11-53-11-PM" border="0"></a>
 
-##Future Enhancements
+## Future Enhancements
 -updating css- adding giblat for prayer direction
 
